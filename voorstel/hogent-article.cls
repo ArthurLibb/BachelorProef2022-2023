@@ -240,9 +240,8 @@
 \def\tocfont{\montserratblack}
 
 \setmainfont{Montserrat}      % Font selection
-\setmathfont{Fira Math}
-\setmonofont{Fira Code}
-
+%\setmathfont{Fira Math}
+%\setmonofont{Fira Code}
 %% -----------------------------------------------------------------------------
 %% Page setup
 

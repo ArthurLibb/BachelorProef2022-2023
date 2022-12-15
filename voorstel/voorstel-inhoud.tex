@@ -2,7 +2,11 @@
 
 \section{Introductie}%
 \label{sec:introductie}
-Laatste jaren is de informatica wereld enorm vooruit gegaan. Natural language processing behoort tot deze vooruitgang en verwijst naar een tak van de informatica, om meer specifiek te zijn de tak van artificiële intelligentie die zich bezig houd met het vermogen om tekst en gesproken woorden te begrijpen. Het doel is dat deze computers de gesproken taal begrijpen op dezelfde manier als mensen \autocite{Education}. Natural language processing wordt al in veel gevallen gebruikt. Google Translate is een groot voorbeeld van algemene beschikbare NLP-technologiën, er worden niet zo maar woorden van de ene taal omgezet naar de andere taal. Er wordt gebruik gemaakt van 
+Laatste jaren is de informatica wereld enorm vooruit gegaan. Zorglab 360° is een bedrijf dat gebruik maakt van deze vooruitgang. Ze werken namelijk met Virtual Reality (VR) voor een aantal domeinen. Dit wordt gedaan om de student beter voor te bereiden en realistischere oefenkansen te bieden. Dit realiseren ze aan de hand van interactieve video's. Stottertherapie is onder andere één van de domeinen waar ze dit toepassen. Het probleem is nu dat het interactieve gedeelte heel rudimentair is en nog veel uitgebreid kan worden. Één van de manieren waarop het kan worden uitgebreid is met behulp van artificiële intelligentie (AI) en Natural Language Processing (NLP). \par
+
+Natural language processing behoort verwijst naar een tak van de informatica, om meer specifiek te zijn de tak van artificiële intelligentie die zich bezig houd met het vermogen om tekst en gesproken woorden te begrijpen. Het doel is dat deze computers de gesproken taal begrijpen op dezelfde manier als mensen dat doen\autocite{Education}. Natural language processing wordt al in veel gevallen gebruikt. Google Translate is een groot voorbeeld van algemene beschikbare NLP-technologie, zij maken gebruik van de AI Google Neural Machine Translation (GNMT). Naast GNMT zijn er ook nog andere AI's, namelijk wave2vec. Wave2vec is een open source NLP AI model dat audio gebruikt om automatic speech recognition (ASR) modellen te trainen. Het is gemaakt door Facebook en hun doel is dat deze AI werkt voor alle talen.In deze bachelorproef wil ik nagaan of het mogelijk is om wave2vec te integreren bij stottertherapie in VR en kijken hoe effectief dit is. 
+
+
 
 
 %---------- Stand van zaken ---------------------------------------------------
@@ -10,48 +14,20 @@ Laatste jaren is de informatica wereld enorm vooruit gegaan. Natural language pr
 \section{State-of-the-art}%
 \label{sec:state-of-the-art}
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+De nieuwste versie van wave2vec is wav2vec 2.0. Het maakt gebruik van niet-gelabelde training data om spraakherkenning voor meer talen, dialecten en domeinen mogelijk te maken. Met maar slechts één uur aan gelabelde data presteert wave2vec 2.0 beter dan de vorige versie \autocite{Baevski2020}.\par 
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+LibriSpeech is de meest gebruikte data die als maatstaf wordt gebruikt om te bepalen hoe goed een natural language prosessing AI is. Het bestaat uit een collectie van ongeveer 1000 uur aan audioboeken. Meeste van de audioboeken komen van Project Gutenberg, een digitale bibliotheek is met meer dan 60,000 e-books \autocite{Han2019}.\par
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+Met behulp van LibriSpeech kunnen we dan bepalen welke natrual language processing AI-model het beste is voor de taal Nederlands. Uit verder onderzoek bleek dat wav2vec2-large-xlsr-53-dutch gemaakt door Jonatas Grosman de beste AI is die werkt met het Nederlands \autocite{JonatasGrosman2022}. Deze AI is de beste omdat het een Word Error Rate (WER) van 15.72\% heeft .Dit is een redelijk groot verschil met de tweede beste, wav2vec2-large-xls-r-300m-nl, die een WER heeft van 17.17\%.\par
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
-
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
-
-% Voor literatuurverwijzingen zijn er twee belangrijke commando's:
-% \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
-%   geen onderdeel is van de zin.
-% \textcite{KEY} => Auteur (jaartal)  Gebruik dit als de auteursnaam wel een
-%   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
-%   ...'')
-
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
+Volgens het doctoraal onderzoek van R. Boey in 2008 heeft stottertherapie een matige doeltreffendheid. Namelijk dat 68\% van de patiënten niet meer stottert na therapie. De effecten zijn ook het meest uitgesproken voor de behandeling bij heel jonge kinderen waarvan 82\% niet meer stottert \textcite{Boey2008}. Er is dus zeker ruimte voor verbetering en ik denk dat AI daar een rol kan bij gaan spelen. 
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
-
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
-
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
-
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
-
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
-
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
-
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
-
+De eerste fase van het onderzoek is kijken hoe de wav2vec2-large-xlsr-53-dutch te werkt gaat en hoe we deze kunnen integreren in VR. De volgende fase is een applicatie opstellen dat herkent wanneer iemand stottert. Deze applicatie gaat dan tijdens een VR-sessie de stem van op nemen van de deelnemer en observeren. Dan als er een interactief deel komt gaat de deelnemer moeten spreken. Als de deelnemer dan stottert gaat de applicatie op de juiste manier reageren, namelijk door een gepast fragment te tonen. De volgende stap is aan de hand van simulaties en experimenten de applicatie gaan verbeteren. Hiervoor zullen er field tests worden gedaan. Tijdens deze testen worden er dan statistieken bijgehouden die aantonen tijdens welke situaties er het meest gestotterd wordt. Dit kan dan worden gegeven per stotteraar en geeft Zorglab een duidelijk overzicht. De laatste stap is dan vergelijken of deze soort behandeling effectief een goed alternatief is.
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
+
 \label{sec:verwachte_resultaten}
-
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
-
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
-
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
 
