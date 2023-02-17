@@ -2,32 +2,40 @@
 
 \section{Introductie}%
 \label{sec:introductie}
-Laatste jaren is de informatica wereld enorm vooruit gegaan. Zorglab 360° is een bedrijf dat gebruik maakt van deze vooruitgang. Ze werken namelijk met Virtual Reality (VR) voor een aantal domeinen. Dit wordt gedaan om de student beter voor te bereiden en realistischere oefenkansen te bieden. Dit realiseren ze aan de hand van interactieve video's. Stottertherapie is onder andere één van de domeinen waar ze dit toepassen. Het probleem is nu dat het interactieve gedeelte heel rudimentair is en nog veel uitgebreid kan worden. Één van de manieren waarop het kan worden uitgebreid is met behulp van artificiële intelligentie (AI) en Natural Language Processing (NLP). \par
+Laatste jaren is de informatica wereld enorm vooruit gegaan. Zorglab 360°, een onderzoekscentrum in de zorg sector van HOGENT, maakt gebruik van deze vooruitgang. Ze werken namelijk met Virtual Reality (VR) voor een aantal domeinen. Dit wordt gedaan om de patiënt beter voor te bereiden en realistische oefenkansen te bieden. Dit realiseren ze aan de hand van interactieve video's. Stottertherapie is onder andere één van de domeinen waar ze dit toepassen. Het probleem is nu dat het interactieve gedeelte heel rudimentair is en nog veel uitgebreid kan worden. Één van de manieren waarop het kan worden uitgebreid is met behulp van artificiële intelligentie (AI) en Natural Language Processing (NLP). \par
 
-Natural language processing behoort verwijst naar een tak van de informatica, om meer specifiek te zijn de tak van artificiële intelligentie die zich bezig houd met het vermogen om tekst en gesproken woorden te begrijpen. Het doel is dat deze computers de gesproken taal begrijpen op dezelfde manier als mensen dat doen\autocite{Education}. Natural language processing wordt al in veel gevallen gebruikt. Google Translate is een groot voorbeeld van algemene beschikbare NLP-technologie, zij maken gebruik van de AI Google Neural Machine Translation (GNMT). Naast GNMT zijn er ook nog andere AI's, namelijk wave2vec. Wave2vec is een open source NLP AI model dat audio gebruikt om automatic speech recognition (ASR) modellen te trainen. Het is gemaakt door Facebook en hun doel is dat deze AI werkt voor alle talen.In deze bachelorproef wil ik nagaan of het mogelijk is om wave2vec te integreren bij stottertherapie in VR en kijken hoe effectief dit is. 
-
-
+Natural language processing verwijst naar een tak van de informatica, om meer specifiek te zijn de tak van artificiële intelligentie die zich bezig houdt met het vermogen om tekst en gesproken woorden te begrijpen. Het doel is dat deze computers de gesproken taal begrijpen op dezelfde manier als mensen dat doen \autocite{Education}. Natural language processing wordt al in veel gevallen gebruikt. Google Translate is een groot voorbeeld van algemene beschikbare NLP-technologie, zij maken gebruik van de AI Google Neural Machine Translation (GNMT). Naast GNMT zijn er ook nog andere AI's, namelijk wave2vec. Wave2vec is een open source NLP AI model dat audio gebruikt om automatic speech recognition (ASR) modellen te trainen. Het is gemaakt door Facebook en hun doel is dat deze AI werkt voor alle talen. In deze bachelorproef wil ik nagaan of het mogelijk is om wave2vec te integreren bij stottertherapie in VR en kijken hoe effectief dit is.
 
 
 %---------- Stand van zaken ---------------------------------------------------
 
 \section{State-of-the-art}%
 \label{sec:state-of-the-art}
-
 De nieuwste versie van wave2vec is wav2vec 2.0. Het maakt gebruik van niet-gelabelde training data om spraakherkenning voor meer talen, dialecten en domeinen mogelijk te maken. Met maar slechts één uur aan gelabelde data presteert wave2vec 2.0 beter dan de vorige versie \autocite{Baevski2020}.\par 
 
-LibriSpeech is de meest gebruikte data die als maatstaf wordt gebruikt om te bepalen hoe goed een natural language prosessing AI is. Het bestaat uit een collectie van ongeveer 1000 uur aan audioboeken. Meeste van de audioboeken komen van Project Gutenberg, een digitale bibliotheek is met meer dan 60,000 e-books \autocite{Han2019}.\par
+LibriSpeech is de meest gebruikte data die als maatstaf wordt gebruikt om te bepalen hoe goed een natural language prosessing AI is. Het bestaat uit een collectie van ongeveer 1000 uur aan audioboeken. De meeste van de audioboeken komen van Project Gutenberg, een digitale bibliotheek is met meer dan 60,000 e-books \autocite{Han2019}.\par
 
-Met behulp van LibriSpeech kunnen we dan bepalen welke natrual language processing AI-model het beste is voor de taal Nederlands. Uit verder onderzoek bleek dat wav2vec2-large-xlsr-53-dutch gemaakt door Jonatas Grosman de beste AI is die werkt met het Nederlands \autocite{JonatasGrosman2022}. Deze AI is de beste omdat het een Word Error Rate (WER) van 15.72\% heeft .Dit is een redelijk groot verschil met de tweede beste, wav2vec2-large-xls-r-300m-nl, die een WER heeft van 17.17\%.\par
+Met behulp van LibriSpeech kunnen we dan bepalen welke natural language processing AI-model het beste is voor de taal Nederlands. Uit verder onderzoek bleek dat wav2vec2-large-xlsr-53-dutch gemaakt door Jonatas Grosman de beste AI is die werkt met het Nederlands \autocite{JonatasGrosman2022}. Deze AI is de beste omdat het een Word Error Rate (WER) van 15.72\% heeft .Dit is een redelijk groot verschil met de tweede beste, wav2vec2-large-xls-r-300m-nl, die een WER heeft van 17.17\%.\par
 
-Volgens het doctoraal onderzoek van R. Boey in 2008 heeft stottertherapie een matige doeltreffendheid. Namelijk dat 68\% van de patiënten niet meer stottert na therapie. De effecten zijn ook het meest uitgesproken voor de behandeling bij heel jonge kinderen waarvan 82\% niet meer stottert \textcite{Boey2008}. Er is dus zeker ruimte voor verbetering en ik denk dat AI daar een rol kan bij gaan spelen. 
+Volgens het doctoraal onderzoek van R. Boey in 2008 heeft stottertherapie een matige doeltreffendheid. Namelijk dat 68\% van de patiënten niet meer stottert na therapie. De effecten zijn ook het meest uitgesproken voor de behandeling bij heel jonge kinderen waarvan 82\% niet meer stottert \textcite{Boey2008}. Er is dus zeker ruimte voor verbetering en artificiële intelligentie kan daar een rol  bij spelen. 
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
-De eerste fase van het onderzoek is kijken hoe de wav2vec2-large-xlsr-53-dutch te werkt gaat en hoe we deze kunnen integreren in VR. De volgende fase is een applicatie opstellen dat herkent wanneer iemand stottert. Deze applicatie gaat dan tijdens een VR-sessie de stem van op nemen van de deelnemer en observeren. Dan als er een interactief deel komt gaat de deelnemer moeten spreken. Als de deelnemer dan stottert gaat de applicatie op de juiste manier reageren, namelijk door een gepast fragment te tonen. De volgende stap is aan de hand van simulaties en experimenten de applicatie gaan verbeteren. Hiervoor zullen er field tests worden gedaan. Tijdens deze testen worden er dan statistieken bijgehouden die aantonen tijdens welke situaties er het meest gestotterd wordt. Dit kan dan worden gegeven per stotteraar en geeft Zorglab een duidelijk overzicht. De laatste stap is dan vergelijken of deze soort behandeling effectief een goed alternatief is.
+De eerste fase van het onderzoek is het verzamelen van natural language AI's voor de taal Nederlands. Deze AI's zouden dan gebruikt worden om de correcte fragmenten af te spelen bij een interactief moment.\par
+Wanneer de AI's verzamelt zijn dan zullen deze vergeleken worden. Dit zal op bepaalde criteria gedaan worden, namelijk:
+\begin{itemize}
+    \item Kan deze AI stotteren correct detecteren?
+    \item Hoe presteert de AI op de hardware? Hoeveel maakt het model gebruik van de processor, RAM-geheugen, ... ?
+    \item Is de AI open source? Wat zijn de bijkomende kosten bij het model?
+    \item Op welke manier gaat de AI moeten worden geïntegreerd in VR?
+\end{itemize}
+Op deze criteria gaat er dan een model gekozen worden. Deze fase van de bachelorproef gaat data en grafieken genereren over de maatstaven die hierboven zijn uitgelegd.\par
+Op basis van de analyse van deze gegevens kan er een weloverwogen keuze worden gemaakt voor de toepassing van artificiële intelligentie. Na de keuze van het model kan dit worden geïntegreerd in de virtual reality toepassing van Zorglab 360°. Hierdoor kan het uiteindelijk worden gebruikt in stottertherapie. Het succesvol integreren van AI in de therapie kan bijdragen aan een nieuwe evolutie in stottertherapie en het onderzoek zal daarmee een belangrijke bijdrage leveren aan deze ontwikkeling.
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
-
 \label{sec:verwachte_resultaten}
+Wanneer de AI volledig is opgesteld en kan gebruikt worden in virtual reality zal deze data kunnen tonen na enige testen. Deze grafieken kunnen dan trends of patronen aanduiden die er voor niet herkenbaar waren. De data kan dan weergeven bij welke woorden of lettergrepen de gebruiker het meeste moeite mee heeft.\par
+Hieruit kunnen we concluderen dat dit logopedisten zou helpen om de individuele behoeften van elke gebruiker beter te begrijpen en hun therapie daarop afstemmen. Dit wil dus zeggen dat natrual language processing AI het potentieel hebben stottertherapie te verbeteren. Hopelijk komt er uit dit onderzoek een PoC die in praktijk kan worden gebruikt en voor evolutie zorgt in de stottertherapie.
+
 
