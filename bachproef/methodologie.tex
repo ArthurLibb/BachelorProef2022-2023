@@ -11,5 +11,82 @@
 %% mogelijke manier toegepast hebt om een antwoord te vinden op de
 %% onderzoeksvraag.
 
-\lipsum[21-25]
+Dit hoofdstuk bespreekt hoe het onderzoek zal worden aangepakt. Er worden verschillende aspecten besproken om het uiteindelijke doel te bereiken: het onderzoeken van de theoretische mogelijkheid om stottertherapie in virtual reality te ontwikkelen. Een proof-of-concept zal worden opgesteld om te beoordelen of ASR-systemen stotteraars kunnen begrijpen met behulp van audio-bewerkingsfuncties
+
+\section{Dataset}
+De eerste fase in een onderzoek met machine learning is opzoek gaan naar geschikte data. De data moet natuurlijk relevant zijn voor het onderzoek, dus wat er nodig is zijn de audiofragmenten van mensen die stotteren. Daarnaast moet er ook nog voldoende data zijn om duidelijke conclusies te kunnen trekken. Mocht er te weinig data zijn dan is er een mogelijkheid dat de resultaten van het onderzoek afwijken van de realiteit. Ten slotte zou er ook genoeg variatie in de gegevens moeten zitten, want anders zijn de onderzoeken uitgevoerd op één bepaalde toepassing, wordt ook wel \emph{overfitting} genoemd.\\
+
+Voor het samenstellen van de dataset werd gezocht naar audio van personen die stotteren. Podcasts bleken hiervoor een goede bron te zijn en waren gemakkelijk te vinden op platforms zoals YouTube. Om voldoende variatie in de dataset te garanderen, bevat deze zowel audio van een man als van een vrouw. Een van de personen wiens audio in de dataset is opgenomen, is Charlotte Roggeman. Ze heeft haar hele leven last gehad van stotteren, wat relevant is voor dit onderzoek. De andere persoon in de dataset is Rowan Amatkario. Hij heeft sinds zijn jeugd last van stotteren en stottert nog steeds.\\
+
+Naast de audiofragmenten moet er ook een transcriptie zijn per fragment, dit bestaat uit een eenvoudig CSV-bestand. Dit bestand is opgedeeld in 2 kolommen. De eerste kolom is het pad naar de audio file en de tweede kolom is de transcriptie ervan. Transcriptie is een nood omdat dit een manier biedt om de nauwkeurigheid te meten van de ASR-modellen. In het tekstbestand komt dan de te verwachten transcripties van de modellen te staan. zo kunnen dan de word error rates worden berekend per model. \\
+
+Er werd ook nog een dataset gemaakt, die bestond uit zelf ingesproken audio zonder het stotteren. Dit is gedaan om vergelijkingen te kunnen maken en een betere analyse te kunnen uitvoeren. De structuur en transcripties van deze dataset zijn hetzelfde als die van de andere dataset, maar dan zonder het stotteren.\\
+
+Voor het gebruik van de datasets werd AudioFolder gebruikt, een dataset builder gemaakt door Hugging Face. AudioFolder is specifiek ontworpen om snel audio datasets in te laden zonder dat er enige code hoeft geschreven te worden. Ook werd de dataset online gezet, om er makkelijk aan te kunnen. Door het online te plaatsten op de Hugging Face website wordt er ook altijd automatisch een weergave van de dataset weergegeven.
+
+\subsection{Structuur}
+Om goed gebruik te kunnen maken van de dataset moet er natuurlijk gekeken worden naar de structuur. De dataset is een dictionary met één key, namelijk 'train'. Corresponderend met deze key staat nog een andere dictionary, deze bevat twee keys: 'audio' en 'transcription'. 
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+DatasetDict({
+    train: Dataset({
+        features: ['audio', 'transcription'],
+        num_rows: 32
+    })
+})
+    \end{minted}
+\caption{Dataset structuur die wordt weergegeven wanneer er \emph{print(dataset)} wordt uitgevoerd.}
+\end{listing}
+Als de key 'audio' wordt aangesproken krijgt men een lijst terug met dictionaries. Deze dictionaries hebben drie keys: 'path', 'array' en 'sampling\_rate'. De sleutel 'path' geeft een string terug die het pad is naar het audiobestand. Dan de key 'array' geeft een lijst weer van floats, deze lijst representeert het audio bestand. De laaste key 'sampling\_rate' geeft de frequentie terug van de audio in Hertz.
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+{'path': '/content/drive/MyDrive/DatasienceNAI/Dataset/Data/Rowan_1.mp3', 'array': array([-0.09932998, -0.13783528, -0.10971285, ...,  0.00368308,
+    0.00385619,  0.0024402 ]), 'sampling_rate': 48000}
+    \end{minted}
+    \caption{Structuur van dictionary in de lijst, dit wordt weergegeven wanneer \emph{print(dataset['train']['audio'][0])} wordt uitgevoerd.}
+\end{listing}
+Moest de andere key 'transcription' in plaats worden aangesproken wordt er een string teruggegeven. Deze string is de transcriptie van het corresponderende audiobestand.
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+ik ben denk al 2 jaar ben ik een part-time softwaredeveloper hier
+    \end{minted}
+    \caption{Wat er wordt weergegeven wanneer \emph{print(dataset['train']['transcription'][0])} wordt uitgevoerd.}
+\end{listing}
+\section{Omgeving}
+Nu dat de data is verzamelt en opgesteld moet er een omgeving worden opgezet waar de dataset kan worden toegepast. De gekozen omgeving is Google Colabratory. Dit is een cloud-based omgeving waar machine learning kan worden uitgevoerd. In Google Colab kan python-code geschreven en uitegvoerd worden zonder de noodzaak van lokale installatie of krachtige hardware.
+
+\subsection{Packages}
+Natuurlijk moeten er ook nog een paar packages geïnstalleerd worden om audio functies te kunnen gebruiken en om aan de ASR-modellen in te laden. Hieronder zie je een overzicht van packages waarvan gebruik is gemaakt dit onderzoek: 
+\begin{itemize}
+    \item jiwer: met deze package kun je de word error rate van de asr-modellen berekenen op een gemakkelijke manier
+    \item librosa:  package voor muziek en audio analyse, met behulp van deze package kun je bijvoorbeeld gebruik maken van MFCC   
+    \item huggingsound: voor het inladen van Wav2Vec 2.0 model en voor het inladen van de dataset
+    \item openai-whisper: voor het inladen van het Whisper model    
+    \item numpy: wordt gebruikt om grafieken mee te maken en zo de modellen visueel te kunnen vergelijken 
+    \item scipy: wordt gebruikt om wiskundige berekeningen en wetenschappelijke computing te doen.
+    \item datasets: package gemaakt door Hugging Face, zorgt er voor dat het werken met datasets simpeler verloopt
+\end{itemize}
+
+Om al deze packages te installeren werd er gebruik gemaakt van de package installer pip. Om pip te gebruiken moeten er uitroeptekens in de code staan, dit omdat je dan zo shell commando's kunt uitvoeren.
+
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+        !pip install librosa
+        !pip install scipy
+        !pip install huggingsound
+        !pip install -U openai-whisper
+        !pip install jiwer
+        !pip install pydub
+    \end{minted}
+\caption{Shell commando's die de nodige packages installeert.}
+\end{listing}
+
+\section{Proof of Concept}
+Om de haalbaarheid van het gebruik van ASR-systemen in combinatie met audio bewerkende functies te onderzoeken, is een proof-of-concept (PoC) opgesteld. Voor de PoC zijn de ASR-modellen Whisper en Wav2Vec 2.0 geütiliseerd. Deze modellen zijn vervolgens getest op de twee hiervoor besproken datasets. Hierbij is gekeken naar de prestaties van de modellen op de ruwe datasets en op de datasets waarbij gebruik wordt gemaakt van audio bewerkende functies.\\
+
+Voor het toepassen van audio bewerkende functies zijn verschillende algoritmen gebruikt. De prestaties van de modellen zijn beoordeeld op basis van de Word Error Rate (WER). De WER geeft aan hoeveel woorden er onjuist zijn geïnterpreteerd door het ASR-systeem ten opzichte van het totale aantal woorden in de audiofragmenten.\\
+
+De PoC heeft als doel om aan te tonen dat de implementatie van audio bewerkende functies inderdaad kan leiden tot betere prestaties van de ASR-modellen bij het verstaan van stotteraars. De resultaten van de PoC zullen worden besproken en geanalyseerd om zo de haalbaarheid van stottertherapie in virtual reality met behulp van ASR-systemen en audio bewerkende functies te onderzoeken.
+
+
 

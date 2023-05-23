@@ -1,7 +1,6 @@
 @InProceedings{10.1145/3441852.3471211,
   author    = {Ghai, Bhavya and Mueller, Klaus},
   booktitle = {Proceedings of the 23rd International ACM SIGACCESS Conference on Computers and Accessibility},
-  date      = {2021},
   title     = {Fluent: An AI Augmented Writing Tool for People Who Stutter},
   doi       = {10.1145/3441852.3471211},
   isbn      = {9781450383066},
@@ -14,11 +13,11 @@
   articleno = {26},
   keywords  = {Accessible computing, Active learning, Stammering, Stuttering},
   numpages  = {8},
+  year      = {2021},
 }
 
-@Article{Mahesha2016,
+@Article{MaheshaVinod+2016+387+399,
   author      = {P. Mahesha and D.S. Vinod},
-  date        = {2016},
   title       = {Gaussian Mixture Model Based Classification of Stuttering Dysfluencies},
   doi         = {doi:10.1515/jisys-2014-0140},
   number      = {3},
@@ -27,186 +26,24 @@
   volume      = {25},
   journal     = {Journal of Intelligent Systems},
   lastchecked = {2023-03-15},
+  year        = {2016},
 }
 
 @InProceedings{Povey:192584,
   author    = {Povey, Daniel and Ghoshal, Arnab and Boulianne, Gilles and Burget, Lukas and Glembek, Ondrej and Goel, Nagendra and Hannemann, Mirko and Motlicek, Petr and Qian, Yanmin and Schwarz, Petr and Silovsky, Jan and Stemmer, Georg and Vesely, Karel},
-  date      = {2011},
   title     = {The Kaldi Speech Recognition Toolkit},
   note      = {IEEE Catalog No.: CFP11SRW-USB},
   publisher = {IEEE Signal Processing Society},
   url       = {http://infoscience.epfl.ch/record/192584},
   abstract  = {We describe the design of Kaldi, a free, open-source  toolkit for speech recognition research. Kaldi provides a  speech recognition system based on finite-state transducers  (using the freely available OpenFst), together with  detailed documentation and scripts for building complete  recognition systems. Kaldi is written is C++, and the core  library supports modeling of arbitrary phonetic-context  sizes, acoustic modeling with subspace Gaussian mixture  models (SGMM) as well as standard Gaussian mixture models,  together with all commonly used linear and affine  transforms. Kaldi is released under the Apache License  v2.0, which is highly nonrestrictive, making it suitable  for a wide community of users.},
+  year      = {2011},
 }
 
 @InProceedings{ropke2019training,
   author    = {R{\"o}pke, Willem and Radulescu, Roxana and Efthymiadis, Kyriakos and Now{\'e}, Ann},
   booktitle = {BNAIC/BENELEARN},
-  date      = {2019},
   title     = {Training a Speech-to-Text Model for Dutch on the Corpus Gesproken Nederlands.},
-}
-
-@InProceedings{9688061,
-  author    = {Poncelet, Jakob and Van hamme, Hugo},
-  booktitle = {2021 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)},
-  date      = {2021},
-  title     = {Comparison of Self-Supervised Speech Pre-Training Methods on Flemish Dutch},
-  doi       = {10.1109/ASRU51503.2021.9688061},
-  pages     = {169-176},
-}
-
-@Misc{github,
-  author    = {Maarten van Gompel and laurensw75 and Axel and roelandordelman},
-  date      = {2023},
-  title     = {Kladi NL},
-  url       = {https://github.com/opensource-spraakherkenning-nl/Kaldi_NL},
-  commit    = {7c4beebad0319e86f10132f24ba4fa7f93515207},
-  day       = {26},
-  journal   = {GitHub repository},
-  publisher = {GitHub},
-}
-
-@Misc{openspraaktechnologie,
-  author = {Universiteit Twente},
-  date   = {2019},
-  title  = {Open Spraaktechnologie},
-  note   = {Accessed on mar 22, 2023},
-  url    = {https://openspraaktechnologie.org/},
-}
-
-@Misc{baevski2020wav2vec,
-  author        = {Alexei Baevski and Henry Zhou and Abdelrahman Mohamed and Michael Auli},
-  date          = {2020},
-  title         = {wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations},
-  eprint        = {2006.11477},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.CL},
-}
-
-@InProceedings{ott2019fairseq,
-  author    = {Myle Ott and Sergey Edunov and Alexei Baevski and Angela Fan and Sam Gross and Nathan Ng and David Grangier and Michael Auli},
-  booktitle = {Proceedings of NAACL-HLT 2019: Demonstrations},
-  date      = {2019},
-  title     = {fairseq: A Fast, Extensible Toolkit for Sequence Modeling},
-}
-
-@Article{Jaiswal2021,
-  author         = {Jaiswal, Ashish and Babu, Ashwin Ramesh and Zadeh, Mohammad Zaki and Banerjee, Debapriya and Makedon, Fillia},
-  date           = {2021},
-  title          = {A Survey on Contrastive Self-Supervised Learning},
-  doi            = {10.3390/technologies9010002},
-  issn           = {2227-7080},
-  number         = {1},
-  url            = {https://www.mdpi.com/2227-7080/9/1/2},
-  volume         = {9},
-  abstract       = {Self-supervised learning has gained popularity because of its ability to avoid the cost of annotating large-scale datasets. It is capable of adopting self-defined pseudolabels as supervision and use the learned representations for several downstream tasks. Specifically, contrastive learning has recently become a dominant component in self-supervised learning for computer vision, natural language processing (NLP), and other domains. It aims at embedding augmented versions of the same sample close to each other while trying to push away embeddings from different samples. This paper provides an extensive review of self-supervised methods that follow the contrastive approach. The work explains commonly used pretext tasks in a contrastive learning setup, followed by different architectures that have been proposed so far. Next, we present a performance comparison of different methods for multiple downstream tasks such as image classification, object detection, and action recognition. Finally, we conclude with the limitations of the current methods and the need for further techniques and future directions to make meaningful progress.},
-  article-number = {2},
-  journal        = {Technologies},
-}
-
-@Article{2021,
-  author    = {Conneau, Alexis and Baevski, Alexei and Collobert, Ronan and Mohamed, Abdelrahman and Auli, Michael},
-  date      = {2021},
-  title     = {Unsupervised Cross-Lingual Representation Learning for Speech Recognition},
-  doi       = {10.21437/interspeech.2021-329},
-  url       = {http://dx.doi.org/10.21437/interspeech.2021-329},
-  journal   = {Interspeech 2021},
-  publisher = {ISCA},
-}
-
-@Misc{grosman2021xlsr53-large-dutch,
-  author       = {Grosman, Jonatas},
-  date         = {2021},
-  title        = {Fine-tuned {XLSR}-53 large model for speech recognition in {D}utch},
-  howpublished = {\url{https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-dutch}},
-}
-
-@TechReport{mccowan2004use,
-  author      = {McCowan, Iain A and Moore, Darren and Dines, John and Gatica-Perez, Daniel and Flynn, Mike and Wellner, Pierre and Bourlard, Hervé},
-  date        = {2004},
-  institution = {IDIAP},
-  title       = {On the use of information retrieval measures for speech recognition evaluation},
-}
-
-@Article{haq2020speech,
-  author  = {Haq, Abdulloh Salahul and Nasrun, Muhammad and Setianingsih, Casi and Murti, M Ary},
-  date    = {2020},
-  title   = {Speech recognition implementation using MFCC and DTW algorithm for home automation},
-  number  = {2},
-  pages   = {78--85},
-  volume  = {7},
-  journal = {Proceeding of the Electrical Engineering Computer Science and Informatics},
-}
-
-@Article{bradbury2000linear,
-  author    = {Bradbury, Jeremy},
-  date      = {2000},
-  title     = {Linear predictive coding},
-  journal   = {Mc G. Hill},
-  publisher = {Citeseer},
-}
-
-@Article{KN2020,
-  author       = {Arjun K. N. and Karthik S. and Kamalnath D. and Pranavi Chanda and Shikha Tripathi},
-  date         = {2020},
-  journaltitle = {Third International Conference on Computing and Network Communications (CoCoNet'19)},
-  title        = {Automatic Correction of Stutter in Disfluent Speech},
-  doi          = {10.1016/j.procs.2020.04.146},
-  issn         = {1877-0509},
-  note         = {Third International Conference on Computing and Network Communications (CoCoNet'19)},
-  pages        = {1363-1370},
-  url          = {https://www.sciencedirect.com/science/article/pii/S187705092031125X},
-  volume       = {171},
-  abstract     = {This paper proposes an automatic correction of stutter involving repetitions, prolongations and long pauses in disfluent speech using signal processing techniques. Mel Frequency Cepstral Coefficients (MFCC) and Linear Predictive Coefficients (LPC) are used to extract the features. Short time energy and correlation between frames are the parameters considered for the removal of repetitions and prolongations, respectively. For long pauses, the input speech samples are rate converted to a sampling rate of 22.05 kHz and long pauses (samples) are removed, retaining the natural pause between words. There is limited work reported on automatic stutter correction using signal processing methods and work on correcting the three types of stutters simultaneously has not been reported. An accuracy of 88.35%, 94.3% and 97.5% is obtained for repetitions, prolongations, and long pauses respectively, with average time for correction being 2 seconds on an Intel 8th gen i5 system, making it suitable for time-critical applications.},
-  journal      = {Procedia Computer Science},
-  keywords     = {stutter correction, feature extraction, MFCC, LPC, repetition},
-}
-
-@Online{Microsoft2017,
-  author       = {Microsoft},
-  date         = {2017},
-  title        = {Automatic Speech Recognition Overview},
-  url          = {https://www.microsoft.com/en-us/research/video/automatic-speech-recognition-overview/},
-  organization = {Microsoft Research},
-}
-
-@Misc{OpenAI2022,
-  author       = {OpenAI},
-  date         = {2022},
-  title        = {Whisper},
-  howpublished = {\url{https://openai.com/research/whisper}},
-}
-
-@Online{mel-spectrogram-medium,
-  author = {Kumar, Ashish},
-  date   = {2019},
-  title  = {Understanding the Mel Spectrogram},
-  url    = {https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53},
-}
-
-@Article{2022,
-  author    = {Benjamini, Itai and Fraczyk, Mikolaj and Kun, Gábor},
-  date      = {2022},
-  title     = {Expander spanning subgraphs with large girth},
-  doi       = {10.1007/s11856-022-2446-8},
-  issn      = {1565-8511},
-  number    = {1},
-  pages     = {156–172},
-  url       = {http://dx.doi.org/10.1007/s11856-022-2446-8},
-  volume    = {251},
-  journal   = {Israel Journal of Mathematics},
-  publisher = {Springer Science and Business Media LLC},
-}
-
-@Article{Tjandra2020,
-  author       = {Tjandra, Andros and Skoglund, Jan and Schubert, Johan},
-  date         = {2020},
-  journaltitle = {OpenAI Technical Report},
-  title        = {WHISPER: Scalable Voice Authentication with Confidence Estimation},
-  number       = {17},
-  url          = {https://cdn.openai.com/papers/whisper.pdf},
-  volume       = {2020},
-  journal      = {OpenAI Technical Report},
+  year      = {2019},
 }
 
 @InCollection{VASILAKES2021123,
@@ -222,6 +59,216 @@
   url       = {https://www.sciencedirect.com/science/article/pii/B9780128202739000063},
   abstract  = {Natural language processing (NLP) is a subfield of artificial intelligence that is concerned with the automatic understanding of human language by computers. NLP has seen much success in recent years due to increased computing power and the rise of deep learning, and this success has extended into the domains of biomedical and clinical text. NLP has contributed to tasks such as the discovery of drug interactions, the development of clinical decision support systems, and the facilitation of chart review. Part I of this chapter provides an introduction to NLP, some common tasks in the biomedical domain, and the methods for accomplishing these tasks. Part II gives a survey of recent applications of NLP in cardiovascular medicine.},
   keywords  = {Artificial intelligence, Biomedical informatics, Clinical informatics, Information extraction, Machine learning, Natural language processing},
+}
+
+@InProceedings{9688061,
+  author    = {Poncelet, Jakob and Van hamme, Hugo},
+  booktitle = {2021 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)},
+  title     = {Comparison of Self-Supervised Speech Pre-Training Methods on Flemish Dutch},
+  doi       = {10.1109/ASRU51503.2021.9688061},
+  pages     = {169-176},
+  year      = {2021},
+}
+
+@Misc{github,
+  author    = {Maarten van Gompel and laurensw75 and Axel and roelandordelman},
+  title     = {Kladi NL},
+  url       = {https://github.com/opensource-spraakherkenning-nl/Kaldi_NL},
+  commit    = {7c4beebad0319e86f10132f24ba4fa7f93515207},
+  day       = {26},
+  journal   = {GitHub repository},
+  month     = {Jan},
+  publisher = {GitHub},
+  year      = {2023},
+}
+
+@Misc{openspraaktechnologie,
+  author = {Universiteit Twente},
+  title  = {Open Spraaktechnologie},
+  note   = {Accessed on mar 22, 2023},
+  url    = {https://openspraaktechnologie.org/},
+  year   = {2019},
+}
+
+@Misc{baevski2020wav2vec,
+  author        = {Alexei Baevski and Henry Zhou and Abdelrahman Mohamed and Michael Auli},
+  title         = {wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations},
+  eprint        = {2006.11477},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  year          = {2020},
+}
+
+@InProceedings{ott2019fairseq,
+  author    = {Myle Ott and Sergey Edunov and Alexei Baevski and Angela Fan and Sam Gross and Nathan Ng and David Grangier and Michael Auli},
+  booktitle = {Proceedings of NAACL-HLT 2019: Demonstrations},
+  title     = {fairseq: A Fast, Extensible Toolkit for Sequence Modeling},
+  year      = {2019},
+}
+
+@Article{technologies9010002,
+  author         = {Jaiswal, Ashish and Babu, Ashwin Ramesh and Zadeh, Mohammad Zaki and Banerjee, Debapriya and Makedon, Fillia},
+  title          = {A Survey on Contrastive Self-Supervised Learning},
+  doi            = {10.3390/technologies9010002},
+  issn           = {2227-7080},
+  number         = {1},
+  url            = {https://www.mdpi.com/2227-7080/9/1/2},
+  volume         = {9},
+  abstract       = {Self-supervised learning has gained popularity because of its ability to avoid the cost of annotating large-scale datasets. It is capable of adopting self-defined pseudolabels as supervision and use the learned representations for several downstream tasks. Specifically, contrastive learning has recently become a dominant component in self-supervised learning for computer vision, natural language processing (NLP), and other domains. It aims at embedding augmented versions of the same sample close to each other while trying to push away embeddings from different samples. This paper provides an extensive review of self-supervised methods that follow the contrastive approach. The work explains commonly used pretext tasks in a contrastive learning setup, followed by different architectures that have been proposed so far. Next, we present a performance comparison of different methods for multiple downstream tasks such as image classification, object detection, and action recognition. Finally, we conclude with the limitations of the current methods and the need for further techniques and future directions to make meaningful progress.},
+  article-number = {2},
+  journal        = {Technologies},
+  year           = {2021},
+}
+
+@Article{2021,
+  author    = {Conneau, Alexis and Baevski, Alexei and Collobert, Ronan and Mohamed, Abdelrahman and Auli, Michael},
+  title     = {Unsupervised Cross-Lingual Representation Learning for Speech Recognition},
+  doi       = {10.21437/interspeech.2021-329},
+  url       = {http://dx.doi.org/10.21437/interspeech.2021-329},
+  journal   = {Interspeech 2021},
+  month     = {Aug},
+  publisher = {ISCA},
+  year      = {2021},
+}
+
+@Article{2021,
+  author    = {Conneau, Alexis and Baevski, Alexei and Collobert, Ronan and Mohamed, Abdelrahman and Auli, Michael},
+  title     = {Unsupervised Cross-Lingual Representation Learning for Speech Recognition},
+  doi       = {10.21437/interspeech.2021-329},
+  url       = {http://dx.doi.org/10.21437/interspeech.2021-329},
+  journal   = {Interspeech 2021},
+  month     = {Aug},
+  publisher = {ISCA},
+  year      = {2021},
+}
+
+@Misc{grosman2021xlsr53-large-dutch,
+  author       = {Grosman, Jonatas},
+  title        = {Fine-tuned {XLSR}-53 large model for speech recognition in {D}utch},
+  howpublished = {\url{https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-dutch}},
+  year         = {2021},
+}
+
+@TechReport{mccowan2004use,
+  author      = {McCowan, Iain A and Moore, Darren and Dines, John and Gatica-Perez, Daniel and Flynn, Mike and Wellner, Pierre and Bourlard, Herv{\'e}},
+  institution = {IDIAP},
+  title       = {On the use of information retrieval measures for speech recognition evaluation},
+  year        = {2004},
+}
+
+@Article{haq2020speech,
+  author  = {Haq, Abdulloh Salahul and Nasrun, Muhammad and Setianingsih, Casi and Murti, M Ary},
+  title   = {Speech recognition implementation using MFCC and DTW algorithm for home automation},
+  number  = {2},
+  pages   = {78--85},
+  volume  = {7},
+  journal = {Proceeding of the Electrical Engineering Computer Science and Informatics},
+  year    = {2020},
+}
+
+@Article{bradbury2000linear,
+  author    = {Bradbury, Jeremy},
+  title     = {Linear predictive coding},
+  journal   = {Mc G. Hill},
+  publisher = {Citeseer},
+  year      = {2000},
+}
+
+@Article{KN20201363,
+  author   = {Arjun {K N} and Karthik S and Kamalnath D and Pranavi Chanda and Shikha Tripathi},
+  title    = {Automatic Correction of Stutter in Disfluent Speech},
+  doi      = {https://doi.org/10.1016/j.procs.2020.04.146},
+  issn     = {1877-0509},
+  note     = {Third International Conference on Computing and Network Communications (CoCoNet'19)},
+  pages    = {1363-1370},
+  url      = {https://www.sciencedirect.com/science/article/pii/S187705092031125X},
+  volume   = {171},
+  abstract = {This paper proposes an automatic correction of stutter involving repetitions, prolongations and long pauses in disfluent speech using signal processing techniques. Mel Frequency Cepstral Coefficients (MFCC) and Linear Predictive Coefficients (LPC) are used to extract the features. Short time energy and correlation between frames are the parameters considered for the removal of repetitions and prolongations, respectively. For long pauses, the input speech samples are rate converted to a sampling rate of 22.05 kHz and long pauses (samples) are removed, retaining the natural pause between words. There is limited work reported on automatic stutter correction using signal processing methods and work on correcting the three types of stutters simultaneously has not been reported. An accuracy of 88.35%, 94.3% and 97.5% is obtained for repetitions, prolongations, and long pauses respectively, with average time for correction being 2 seconds on an Intel 8th gen i5 system, making it suitable for time-critical applications.},
+  journal  = {Procedia Computer Science},
+  keywords = {stutter correction, feature extraction, MFCC, LPC, repetiton},
+  year     = {2020},
+}
+
+@InCollection{VASILAKES2021123,
+  author    = {Jake Vasilakes and Sicheng Zhou and Rui Zhang},
+  booktitle = {Machine Learning in Cardiovascular Medicine},
+  date      = {2021},
+  title     = {Chapter 6 - Natural language processing},
+  doi       = {https://doi.org/10.1016/B978-0-12-820273-9.00006-3},
+  editor    = {Subhi J. Al'Aref and Gurpreet Singh and Lohendran Baskaran and Dimitris Metaxas},
+  isbn      = {978-0-12-820273-9},
+  pages     = {123-148},
+  publisher = {Academic Press},
+  url       = {https://www.sciencedirect.com/science/article/pii/B9780128202739000063},
+  abstract  = {Natural language processing (NLP) is a subfield of artificial intelligence that is concerned with the automatic understanding of human language by computers. NLP has seen much success in recent years due to increased computing power and the rise of deep learning, and this success has extended into the domains of biomedical and clinical text. NLP has contributed to tasks such as the discovery of drug interactions, the development of clinical decision support systems, and the facilitation of chart review. Part I of this chapter provides an introduction to NLP, some common tasks in the biomedical domain, and the methods for accomplishing these tasks. Part II gives a survey of recent applications of NLP in cardiovascular medicine.},
+  keywords  = {Artificial intelligence, Biomedical informatics, Clinical informatics, Information extraction, Machine learning, Natural language processing},
+}
+
+@InCollection{VASILAKES2021123,
+  author    = {Jake Vasilakes and Sicheng Zhou and Rui Zhang},
+  booktitle = {Machine Learning in Cardiovascular Medicine},
+  date      = {2021},
+  title     = {Chapter 6 - Natural language processing},
+  doi       = {https://doi.org/10.1016/B978-0-12-820273-9.00006-3},
+  editor    = {Subhi J. Al'Aref and Gurpreet Singh and Lohendran Baskaran and Dimitris Metaxas},
+  isbn      = {978-0-12-820273-9},
+  pages     = {123-148},
+  publisher = {Academic Press},
+  url       = {https://www.sciencedirect.com/science/article/pii/B9780128202739000063},
+  abstract  = {Natural language processing (NLP) is a subfield of artificial intelligence that is concerned with the automatic understanding of human language by computers. NLP has seen much success in recent years due to increased computing power and the rise of deep learning, and this success has extended into the domains of biomedical and clinical text. NLP has contributed to tasks such as the discovery of drug interactions, the development of clinical decision support systems, and the facilitation of chart review. Part I of this chapter provides an introduction to NLP, some common tasks in the biomedical domain, and the methods for accomplishing these tasks. Part II gives a survey of recent applications of NLP in cardiovascular medicine.},
+  keywords  = {Artificial intelligence, Biomedical informatics, Clinical informatics, Information extraction, Machine learning, Natural language processing},
+}
+
+@Online{MicrosoftASR,
+  author       = {Microsoft},
+  date         = {June 7, 2017},
+  title        = {Automatic Speech Recognition Overview},
+  url          = {https://www.microsoft.com/en-us/research/video/automatic-speech-recognition-overview/},
+  organization = {Microsoft Research},
+  year         = {2017},
+}
+
+@Misc{openai_whisper,
+  author       = {OpenAI},
+  date         = {Sep 21 2022},
+  title        = {Whisper},
+  howpublished = {\url{https://openai.com/research/whisper}},
+  note         = {Accessed: 25-04-2023},
+  year         = {2022},
+}
+
+@Online{mel-spectrogram-medium,
+  author  = {Kumar, Ashish},
+  title   = {Understanding the Mel Spectrogram},
+  url     = {https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53},
+  urldate = {2023-04-25},
+  month   = {December},
+  year    = {2019},
+}
+
+@Article{2022,
+  author    = {Benjamini, Itai and Fraczyk, Mikolaj and Kun, Gábor},
+  title     = {Expander spanning subgraphs with large girth},
+  doi       = {10.1007/s11856-022-2446-8},
+  issn      = {1565-8511},
+  number    = {1},
+  pages     = {156–172},
+  url       = {http://dx.doi.org/10.1007/s11856-022-2446-8},
+  volume    = {251},
+  journal   = {Israel Journal of Mathematics},
+  month     = {Dec},
+  publisher = {Springer Science and Business Media LLC},
+  year      = {2022},
+}
+
+@Article{tjandra2020whisper,
+  author  = {Tjandra, Andros and Skoglund, Jan and Schubert, Johan},
+  title   = {WHISPER: Scalable Voice Authentication with Confidence Estimation},
+  number  = {17},
+  url     = {https://cdn.openai.com/papers/whisper.pdf},
+  volume  = {2020},
+  journal = {OpenAI Technical Report},
+  year    = {2020},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

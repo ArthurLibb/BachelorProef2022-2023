@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{DatasetDict}\PYG{p}{(\PYGZob{}}
+    \PYG{n}{train}\PYG{p}{:} \PYG{n}{Dataset}\PYG{p}{(\PYGZob{}}
+        \PYG{n}{features}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}audio\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}transcription\PYGZsq{}}\PYG{p}{],}
+        \PYG{n}{num\PYGZus{}rows}\PYG{p}{:} \PYG{l+m+mi}{32}
+    \PYG{p}{\PYGZcb{})}
+\PYG{p}{\PYGZcb{})}
+\end{Verbatim}

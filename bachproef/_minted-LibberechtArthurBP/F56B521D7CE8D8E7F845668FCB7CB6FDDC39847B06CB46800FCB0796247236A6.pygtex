@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+        \PYG{k}{def} \PYG{n+nf}{convert\PYGZus{}sr\PYGZus{}audio}\PYG{p}{(}\PYG{n}{audio}\PYG{p}{,} \PYG{n}{orgSr}\PYG{p}{):}
+        \PYG{n}{sr} \PYG{o}{=} \PYG{l+m+mi}{22050}
+        \PYG{n}{convertAudio} \PYG{o}{=} \PYG{n}{librosa}\PYG{o}{.}\PYG{n}{resample}\PYG{p}{(}\PYG{n}{audio}\PYG{p}{,} \PYG{n}{orig\PYGZus{}sr}\PYG{o}{=}\PYG{n}{orgSr}\PYG{p}{,} \PYG{n}{target\PYGZus{}sr}\PYG{o}{=}\PYG{n}{sr}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{convertAudio}
+\end{Verbatim}

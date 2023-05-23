@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+        \PYG{err}{!}\PYG{n}{pip} \PYG{n}{install} \PYG{n}{librosa}
+        \PYG{err}{!}\PYG{n}{pip} \PYG{n}{install} \PYG{n}{scipy}
+        \PYG{err}{!}\PYG{n}{pip} \PYG{n}{install} \PYG{n}{huggingsound}
+        \PYG{err}{!}\PYG{n}{pip} \PYG{n}{install} \PYG{o}{\PYGZhy{}}\PYG{n}{U} \PYG{n}{openai}\PYG{o}{\PYGZhy{}}\PYG{n}{whisper}
+        \PYG{err}{!}\PYG{n}{pip} \PYG{n}{install} \PYG{n}{jiwer}
+        \PYG{err}{!}\PYG{n}{pip} \PYG{n}{install} \PYG{n}{pydub}
+\end{Verbatim}

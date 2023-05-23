@@ -4,34 +4,29 @@
 
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
+Stotteren is een veelvoorkomende spraakstoornis die wereldwijd effect heeft op het dagelijks leven van mensen. Mensen die stotteren hebben vaak moeite met communiceren in sociale situaties, wat kan leiden tot gevoelens van angst, schaamte en isolatie. Helaas blijken traditionele behandelingen voor stotteren vaak beperkte doeltreffendheid te hebben en maken ze weinig tot geen gebruik van nieuwe technologieën.\par
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
-
-\begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
-\end{itemize}
-
+Gelukkig zijn er organisaties zoals Zorglab 360° van HOGENT, die zich richten op het ontwikkelen van innovatieve oplossingen voor de zorgsector in Vlaanderen. Zij hebben een nieuwe vorm van stottertherapie ontwikkeld die gebruik maakt van virtual reality. Momenteel is deze behandeling nog in ontwikkeling. Het doel is om de therapie verder te automatiseren door gebruik te maken van Automatic Speech Recognition modellen, zoals bijvoorbeeld Kaldi of Wav2Vec. Dit kan een veilige en gecontroleerde omgeving bieden waarin de patiënten hun spraakvaardigheden kunnen verbeteren en hun zelfvertrouwen opbouwen.
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
+Op dit moment werkt de stottertherapie van Zorglab 360° nog niet zoals bedoeld. Tijdens het afspelen van een video van een realistische situatie stopt de video op het moment dat er interactie nodig is, bijvoorbeeld wanneer de stotteraar antwoord moet geven op een gestelde vraag. Om dit probleem op te lossen is het noodzakelijk om gebruik te maken van Automatic Speech Recognition (ASR) modellen. Het vinden van het juiste ASR model met de juiste toevoegingen is echter een uitdaging. Omdat deze situatie zeer specifiek is, moet er onderzocht worden hoe dit het beste aangepakt kan worden om de therapie te optimaliseren.\par
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+Zo heb je dan het Kaldi speech recognition toolkit, dat gebruikt kan worden om de automatisering van de stottertherapie van Zoglab 360° verder te verbeteren. Kaldi is een open-source toolkit dat veel wordt gebruikt in de spraakherkenning en natuurlijke taalverwerking gemeenschap. Het biedt een krachtig platform voor het ontwikkelen van automatische spraakherkenningsmodellen en kan worden aangepast aan de specifieke behoeften van de stottertherapie.\par
 
+Naast Kaldi is er nog een ander ASR-model dat gebruikt kan worden om de stottertherapie te verbeteren, namelijk Wav2Vec. Wav2Vec is een deep learning-model dat in staat is om zeer nauwkeurig spraaksignalen om te zetten in tekst. Dit model kan met name van pas komen in situaties waarin spraaksignalen van slechte kwaliteit zijn, bijvoorbeeld bij spraakstoornissen zoals stotteren. Door het gebruik van Wav2Vec kan de therapie nog accurater worden, waardoor patiënten beter geholpen kunnen worden in hun dagelijks leven. Echter, het implementeren van Wav2Vec in de therapie vereist nog wel verder onderzoek en ontwikkeling om de effectiviteit en efficiëntie te waarborgen. 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
-
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+Het doel van dit onderzoek is om te bestuderen of het mogelijk is om een ASR-model te gebruiken in combinatie met spraakherkenningstechnieken om een stotteraar te verstaan en om te bepalen of deze technologie geschikt is voor gebruik in echte stottertherapie. Om deze onderzoeksvragen te beantwoorden, zal er een literatuurstudie en experimenteel onderzoek worden uitgevoerd. Op volgende onderzoeksvragen zullen dan een antwoord worden gegeven:
+\begin{itemize}
+    \item Welke aanpassingen zijn nodig in het ASR-model om het effectief te kunnen gebruiken in de context van stottertherapie?
+    \item Hoe kunnen we de efficiëntie van het gebruik van ASR in stottertherapie maximaliseren?
+    \item Welke combinatie van technieken en parameters resulteert in de beste prestaties van het ASR-model voor stottertherapie? 
+\end{itemize}
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
-
+Het doel van dit onderzoek is om een proof-of-concept te ontwikkelen die antwoorden biedt op de onderzoeksvragen. De proof-of-concept zal worden ontwikkeld in Google Colaboratory en zal een duidelijke beschrijving bevatten van elke stap in het proces. Het primaire doel van de proof-of-concept is om de prestaties van verschillende ASR-modellen te evalueren en te vergelijken, met behulp van een dataset van stotterende spraak. Door middel van deze data kunnen we dan de modellen vergelijken op basis van een maateenheid. Na het uitvoeren van de experimenten en het evalueren van de resultaten, zal er een conclusie worden getrokken over welk ASR-model in combinatie met spraakherkenningstechnieken het meest geschikt is voor het verstaan van een stotteraar.
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
 

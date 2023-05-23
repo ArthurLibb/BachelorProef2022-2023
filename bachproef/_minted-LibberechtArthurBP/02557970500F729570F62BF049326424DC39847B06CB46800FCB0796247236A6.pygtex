@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{jiwer} \PYG{k+kn}{import} \PYG{n}{wer}
+
+\PYG{k}{def} \PYG{n+nf}{WERModellen}\PYG{p}{(}\PYG{n}{dataset}\PYG{p}{):}
+    \PYG{n}{listWERWisper} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{n}{listWERWav2Vec} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{k}{for} \PYG{n}{audio} \PYG{o+ow}{in} \PYG{n}{dataset}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{]:}
+        \PYG{n}{transcription} \PYG{o}{=} \PYG{n}{audio}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}transcription\PYGZsq{}}\PYG{p}{]}
+        \PYG{n}{path} \PYG{o}{=} \PYG{n}{audio}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}audio\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}path\PYGZsq{}}\PYG{p}{]}
+        \PYG{c+c1}{\PYGZsh{}Wisper}
+        \PYG{n}{audio} \PYG{o}{=} \PYG{n}{whisper}\PYG{o}{.}\PYG{n}{load\PYGZus{}audio}\PYG{p}{(}\PYG{n}{path}\PYG{p}{)}
+        \PYG{n}{audio} \PYG{o}{=} \PYG{n}{whisper}\PYG{o}{.}\PYG{n}{pad\PYGZus{}or\PYGZus{}trim}\PYG{p}{(}\PYG{n}{audio}\PYG{p}{)}
+        \PYG{n}{mel} \PYG{o}{=} \PYG{n}{whisper}\PYG{o}{.}\PYG{n}{log\PYGZus{}mel\PYGZus{}spectrogram}\PYG{p}{(}\PYG{n}{audio}\PYG{p}{)}\PYG{o}{.}\PYG{n}{to}\PYG{p}{(}\PYG{n}{modelWhisper}\PYG{o}{.}\PYG{n}{device}\PYG{p}{)}
+        \PYG{n}{options} \PYG{o}{=} \PYG{n}{whisper}\PYG{o}{.}\PYG{n}{DecodingOptions}\PYG{p}{(}\PYG{n}{fp16} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{)}
+        \PYG{n}{result} \PYG{o}{=} \PYG{n}{whisper}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{n}{modelWhisper}\PYG{p}{,} \PYG{n}{mel}\PYG{p}{,} \PYG{n}{options}\PYG{p}{)}
+        \PYG{n}{rate} \PYG{o}{=} \PYG{n}{wer}\PYG{p}{(}\PYG{n}{result}\PYG{o}{.}\PYG{n}{text}\PYG{p}{,} \PYG{n}{transcription}\PYG{p}{)}
+        \PYG{n}{listWERWisper}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{rate}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{}Wav2Vec}
+        \PYG{n}{path} \PYG{o}{=} \PYG{p}{[}\PYG{n}{path}\PYG{p}{]}
+        \PYG{n}{modelTranscr} \PYG{o}{=} \PYG{n}{modelWav2Vec}\PYG{o}{.}\PYG{n}{transcribe}\PYG{p}{(}\PYG{n}{path}\PYG{p}{)}
+        \PYG{n}{transW2V} \PYG{o}{=} \PYG{n}{modelTranscr}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}transcription\PYGZsq{}}\PYG{p}{]}
+        \PYG{n}{rate2} \PYG{o}{=} \PYG{n}{wer}\PYG{p}{(}\PYG{n}{transW2V}\PYG{p}{,}\PYG{n}{transcription}\PYG{p}{)}
+        \PYG{n}{listWERWav2Vec}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{rate2}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{gemiddelde}\PYG{p}{(}\PYG{n}{listWERWav2Vec}\PYG{p}{),}\PYG{n}{gemiddelde}\PYG{p}{(}\PYG{n}{listWERWisper}\PYG{p}{),} \PYG{n}{listWERWav2Vec}\PYG{p}{,}\PYG{n}{listWERWisper}
+\end{Verbatim}
