@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{mfcc\PYGZus{}per\PYGZus{}segment}\PYG{p}{(}\PYG{n}{segmenten}\PYG{p}{):}
+    \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}
+    \PYG{k}{while} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{segmenten}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:}
+        \PYG{n}{seg1} \PYG{o}{=} \PYG{n}{segmenten}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+        \PYG{n}{seg2} \PYG{o}{=} \PYG{n}{segmenten}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}
+
+        \PYG{n}{mfcc1} \PYG{o}{=} \PYG{n}{librosa}\PYG{o}{.}\PYG{n}{feature}\PYG{o}{.}\PYG{n}{mfcc}\PYG{p}{(}\PYG{n}{y}\PYG{o}{=}\PYG{n}{seg1}\PYG{p}{)}
+        \PYG{n}{mfcc2} \PYG{o}{=} \PYG{n}{librosa}\PYG{o}{.}\PYG{n}{feature}\PYG{o}{.}\PYG{n}{mfcc}\PYG{p}{(}\PYG{n}{y}\PYG{o}{=}\PYG{n}{seg2}\PYG{p}{)}
+
+        \PYG{n}{correlation} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{n}{mfcc1}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+        \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{mfcc1}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]):}
+            \PYG{n}{correlation}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{corrcoef}\PYG{p}{(}\PYG{n}{mfcc1}\PYG{p}{[}\PYG{n}{j}\PYG{p}{],} \PYG{n}{mfcc2}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}
+            \PYG{n}{avg\PYGZus{}correlation} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{correlation}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n}{avg\PYGZus{}correlation} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mf}{0.92}\PYG{p}{:}
+            \PYG{n}{segmenten}\PYG{o}{.}\PYG{n}{pop}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{i} \PYG{o}{+=} \PYG{l+m+mi}{1}
+    \PYG{k}{return} \PYG{n}{segmenten}
+\end{Verbatim}

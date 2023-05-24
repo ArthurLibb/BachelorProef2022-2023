@@ -6,12 +6,11 @@
 
 In dit hoofdstuk zal er dieper ingegaan worden op de ontwikkeling van het proof-of-concept. Het uiteindelijke doel van deze proof-of-concept is om te laten zien dat het theoretisch mogelijk is om ASR-systemen stotteraars te laten verstaan met behulp van audio bewerkende functies. Op basis van de bevindingen en resultaten van het PoC kunnen er conclusies worden getrokken over de haalbaarheid van het gebruik van audio bewerkende functies om ASR-systemen stotteraars te laten verstaan.
 \section{Stotter Correctie}
-De eerste stap in deze proof-of-concept is het implementeren van algoritmen die het audiobestand gaan bewerken. Er worden drie algoritmen gebruikt. Het eerste algoritme is bedoeld om de verlengingen van de stotteraars te verwijderen. Daarnaast is er een algoritme dat lange pauzes van de stotteraars detecteert en verwijdert. Ten slotte is er een algoritme dat repeterende woorden uit het audiobestand verwijdert. Het doel van deze algoritmen is om de ASR-systemen een beter begrip te geven van de audiobestanden.
-
-\subsection{Verlenging Verwijdering}
+De eerste stap in deze proof-of-concept is het implementeren van algoritmen die het audiobestand gaan bewerken. Er worden twee algoritmen gebruikt. Het eerste is er een algoritme dat repeterende woorden uit het audiobestand verwijdert. Dan het tweede algoritme is bedoeld om de verlengingen van de stotteraars te verwijderen. Het doel van deze algoritmen is om de ASR-systemen een beter begrip te geven van de audiobestanden.
 
 \subsection{Repetities Verwijderen}
 Het algoritme voor het verwijderen van repetities start met het converteren van het audiobestand naar 22.05kHz. Dit maakt het makkelijker repetities te detecteren in de audio. Dit werd gedaan met een eenvoudige methode genaamd \emph{convert\_sr\_audio} die wordt weergegeven in figuur \ref{lst:ConvertMeth}.\\
+
 \begin{listing}[H]
     \begin{minted}[breaklines, style=solarized-dark]{python}
         def convert_sr_audio(audio, orgSr):
@@ -24,7 +23,7 @@ Het algoritme voor het verwijderen van repetities start met het converteren van 
 \end{listing}
 
 Het volgende dat moet gebeuren, is het berekenen van de short-time energy (STE) van de audio. Dit wordt gedaan aan de hand van de volgende vergelijking:
-    \[E_n = \sum_{m=-\infty}^{\infty} (x(m) w(n-m))^2 \]
+\[E_n = \sum_{m=-\infty}^{\infty} (x(m) w(n-m))^2 \]
 Bij deze vergelijking staat $E(n)$ voor de short-time energy op tijdstip $n$. Om het concept van STE beter uit te kunnen leggen, wordt er gewerkt met een voorbeeld. In figuur \ref{fig:Signal} is een visualisatie te zien van een audiofragment, waarvoor de STE is berekend. De STE van de audio wordt weergegeven in figuur \ref{fig:STE}. Zoals te zien is in de eerste figuur, is er geen geluid aan het begin en einde van de audio, wat overeenkomt met de grafiek. Het STE van een bepaald geluid komt dus overeen met de luidheid of stilte van het geluid. Als de audio luid is op een bepaald moment, zal dit overeenkomen met een hoge energie, en als het stil is op een bepaald moment, zal dit overeenkomen met een lage energie.
 \begin{figure}[H]
     \centering
@@ -41,7 +40,108 @@ Bij deze vergelijking staat $E(n)$ voor de short-time energy op tijdstip $n$. Om
         \label{fig:STE}
     \end{minipage}
 \end{figure}
-Deze berekende energie kan dan gefilterd worden om hoge frequentie transities te verwijderen. Dit zorgt er voor dat er een dat het signaal vereffend wordt. Daarna wordt er een drempelwaarde toegepast op het vereffend signaal. De drempelwaarde die genomen werd is 0.08, dit volgt een paper waar wordt voorgesteld design voor correctie van stotter \auocite{KN2020}.
+De berekende energie kan worden gefilterd om hoge frequentietransities te verwijderen, waardoor de berekende energie \emph{smoother} gemaakt wordt. Vervolgens wordt er een drempelwaarde toegepast op de gefilterde gegevens. De gekozen drempelwaarde is 0.08, gebaseerd op een paper waarin een voorgesteld ontwerp voor de correctie van stotteren werd onderzocht \autocite{KN2020}. In figuur \ref{fig:smoothing} wordt de energie van een signaal weergegeven, samen met de gefilterde energie en de toegepaste drempelwaarde. Door de drempelwaarde toe te passen wordt het duidelijk wanneer er wordt gesproken in de audio en wanneer niet, dit kun je duidelijk zien in de grafiek. 
+
+\begin{center}
+    \includegraphics[scale=0.55]{Smoothing}
+    \captionof{figure}{Grafiek waar de blauwe lijn de energie van een audiofragment is, de oranje lijn de gefilterde energie en de groene lijn de aanduiding waar er gepraat wordt.}
+    \label{fig:smoothing}
+\end{center}
+De groene lijn die zichtbaar is op de grafiek duidt op spraakdetectie. Wanneer de lijn gelijk is aan 1, betekent dit dat er spraak aanwezig is, en wanneer deze 0 is, betekent dit dat er geen spraak wordt gedetecteerd volgens de berekeningen. Deze lijn vertegenwoordigt een array die bestaat uit 1'en en 0'en. Deze array kan worden gebruikt om de audio te bewerken, wat wordt gedaan met behulp van de een methode (\ref{lst:methodeVAD}). In deze methode worden de waarden van de array doorlopen, en wanneer een waarde gelijk is aan 1, wordt het overeenkomstige audiogedeelte in een andere array genaamd 'segmenten' geplaatst. Aan het einde van de methode bevat de 'segmenten' array alle stukken van de audio waar spraak aanwezig is.
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+def audio_opsplitsen(audio, stem_detectie):
+    frame_length = int(0.01 * 22050)
+    segmenten = []
+    
+    for i, is_speech in enumerate(stem_detectie):
+        if is_speech == 1:
+            start_idx = i * frame_length
+            end_idx = start_idx + frame_length
+            speech_segment = audio[start_idx:end_idx]
+            segmenten.append(speech_segment)
+        
+return segmenten
+\end{minted}
+    \caption{Methode dat een audiosignaal en een array gevuld met 1 en 0 als parameters heeft. Gebruikt deze array om audio te bewerken, om zo aan ene audio te geraken waar geen stiltes tussen zitten.}
+\label{lst:methodeVAD}
+\end{listing}
+Verder kan de array dat wordt teruggeven door de 'audio\_opsplitsen' methode gebruikt worden om te kijken of er woorden gerepeteerd worden. Dit wordt gerealiseerd aan de hand van volgende methode:
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+def mfcc_per_segment(segmenten):
+    i=0
+    while i < len(segmenten)-1:
+        seg1 = segmenten[i]
+        seg2 = segmenten[i+1]
+        
+        mfcc1 = librosa.feature.mfcc(y=seg1)
+        mfcc2 = librosa.feature.mfcc(y=seg2)
+
+        correlation = np.zeros(mfcc1.shape[0])
+        for j in range(mfcc1.shape[0]):
+            correlation[j] = np.corrcoef(mfcc1[j], mfcc2[j])[0, 1]
+            avg_correlation = np.mean(correlation)
+        if avg_correlation >= 0.92:
+            segmenten.pop(i+1)
+        else:
+            i += 1
+    return segmenten
+    \end{minted}
+    \caption{Methode dat achtereenvolgende segmenten van een audio vergelijkt door er de Mel-frequency cepstral coëfficiënten (MFCC) van te extraheren.}
+    \label{lst:vglMFCC}
+\end{listing}
+In deze methode worden opeenvolgende segmenten van de audio met elkaar vergeleken. Eerst worden de Mel-frequency cepstral coefficients (MFCC) berekend van de segmenten. Vervolgens worden de coëfficiënten met elkaar vergeleken door de correlatiecoëfficiënt tussen de MFCC's te berekenen. Als de correlatiecoëfficiënt een hoge positieve waarde heeft dan suggereert dit een overeenkomt of gelijkenis tussen de twee segmenten. Dus geeft dit aan dat ze vergelijkbare spraak- of geluidskenmerken delen. Aan de andere kant zou een negatieve correlatie in MFCC-coëfficiënten wijzen op een verschil of ongelijkheid in de spectrale kenmerken tussen de twee segmenten. Om deze redenen wordt er een drempelwaarde van 0.92 genomen, wat dus duidt dit op herhaling van woorden. In dat geval wordt het herhaalde woord verwijderd. Het getal 0.92 is ook gebaseerd op het voorgestelde stottercorrectieontwerp \autocite{KN2020}.
+
+\subsection{Verlenging Verwijderen}
+Dit algoritme dat verlengde woorden verkort, begint met het indelen van de audio in stukken van 50 milliseconden. Hiervoor wordt gebruik gemaakt van een zelfgeschreven methode. Bij het schrijven van deze methode is veel inspiratie gehaald uit de 'audio\_spiltsen' methode (zie Codevoorbeeld \ref{lst:methodeVAD}). De methode voor het splitsen van de audio ziet er als volgt uit:
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+def split_audio(audio, sr):
+    frame_ms = 50  
+    frame_length = int(frame_ms * sr / 1000)  
+    frame_step = int(frame_length / 2)  
+    chunks = []
+    for i in range(0, len(audio) - frame_length + 1, frame_step):
+        start = i
+        end = i + frame_length
+        chunk = audio[start:end]
+        chunks.append(chunk)
+    return chunks
+    \end{minted}
+    \caption{}
+\label{lst:chunks}
+\end{listing}
+Wanneer de audio in stukken van 50 milliseconden is opgedeeld, worden deze stukken met elkaar vergeleken. Dit gebeurt door de MFCC's van twee opeenvolgende stukken te berekenen. De resulterende correlatiecoëfficiënt tussen deze MFCC's wordt vervolgens opgeslagen in een lijst. Nadat de lijst volledig is gevuld met alle correlatiecoëfficiënten, wordt deze doorlopen. Tijdens het doorlopen wordt gecontroleerd of de correlatiefactor groter is dan 0.92. Indien dit het geval is, wordt het stuk audio in een aparte lijst opgeslagen. Wanneer deze lijst een grootte bereikt van 14 of meer, wordt dit beschouwd als een verlenging van een woord. In dat geval worden de eerste paar stukken van de verlenging behouden en de rest wordt verwijderd. Aan het einde van het algoritme zouden alle verlengingen uit de audio moeten zijn gefilterd. De code voor deze gehele sequentie is te zien in Codevoorbeeld \ref{lst:vlgchunks}.
+
+\begin{listing}[H]
+    \begin{minted}[breaklines, style=solarized-dark]{python}
+def vergelijken_chunks(chunks):
+    threshold = 14
+    correlations = []
+    zonderVerlenginen = []
+    
+    for i in range(len(chunks)-1):
+        feature = librosa.feature.mfcc(y=chunks[i])
+        feature2 = librosa.feature.mfcc(y=chunks[i+1])
+        correlation = np.corrcoef(feature, feature2)[0, 1]
+        correlations.append(correlation)
+    
+    verlengde_frames = []
+    for i, corr in enumerate(correlations):
+        if(corr >= 0.92):
+            verlengde_frames.append(chunks[i])
+        else:
+            if(len(verlengde_frames) >= 14):
+                zonderVerlenginen.append(verlengde_frames[:3])
+            zonderVerlenginen.append(chunks[i])
+            verlengde_frames = []
+    
+    return zonderVerlenginen
+    \end{minted}
+    \caption{Methode die verlengingen van uit de audio filtert aan de hand van het berekenden van Mel-frequency cepstral coëfficiënten (MFCC).}
+\label{lst:vlgchunks}
+\end{listing}
 \section{Analyse}
 Nu dat alle nodige algoritmen in plaats zijn en klaar voor gebruik kan er aan analyse worden gedaan. Met behulp van een methode (\ref{lst:WERMethode}) worden de datasets overlopen en getranscribeerd door de twee ASR-modellen: Whisper large-v2 en Wav2Vec 2.0 (wav2vec-large-xlsr-53-dutch). Deze methode maakt ook gebruik van de jiwer package voor het berekenen van de word error rate per model.\\
 

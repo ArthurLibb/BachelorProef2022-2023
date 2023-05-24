@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{vergelijken\PYGZus{}chunks}\PYG{p}{(}\PYG{n}{chunks}\PYG{p}{):}
+    \PYG{n}{threshold} \PYG{o}{=} \PYG{l+m+mi}{14}
+    \PYG{n}{correlations} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{n}{zonderVerlenginen} \PYG{o}{=} \PYG{p}{[]}
+
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{chunks}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{):}
+        \PYG{n}{feature} \PYG{o}{=} \PYG{n}{librosa}\PYG{o}{.}\PYG{n}{feature}\PYG{o}{.}\PYG{n}{mfcc}\PYG{p}{(}\PYG{n}{y}\PYG{o}{=}\PYG{n}{chunks}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+        \PYG{n}{feature2} \PYG{o}{=} \PYG{n}{librosa}\PYG{o}{.}\PYG{n}{feature}\PYG{o}{.}\PYG{n}{mfcc}\PYG{p}{(}\PYG{n}{y}\PYG{o}{=}\PYG{n}{chunks}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{])}
+        \PYG{n}{correlation} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{corrcoef}\PYG{p}{(}\PYG{n}{feature}\PYG{p}{,} \PYG{n}{feature2}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n}{correlations}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{correlation}\PYG{p}{)}
+
+    \PYG{n}{verlengde\PYGZus{}frames} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{corr} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{correlations}\PYG{p}{):}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{corr} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mf}{0.92}\PYG{p}{):}
+            \PYG{n}{verlengde\PYGZus{}frames}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{chunks}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{verlengde\PYGZus{}frames}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{14}\PYG{p}{):}
+                \PYG{n}{zonderVerlenginen}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{verlengde\PYGZus{}frames}\PYG{p}{[:}\PYG{l+m+mi}{3}\PYG{p}{])}
+            \PYG{n}{zonderVerlenginen}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{chunks}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+            \PYG{n}{verlengde\PYGZus{}frames} \PYG{o}{=} \PYG{p}{[]}
+
+    \PYG{k}{return} \PYG{n}{zonderVerlenginen}
+\end{Verbatim}
